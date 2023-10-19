@@ -1,10 +1,9 @@
-const { PrismaClient } = require('@prisma/client')
-const express = require("express");
-
-const prisma = new PrismaClient()
+const express = require('express')
+const seat = require('./routes/seat')
 const app = express()
 
 app.use(express.json())
+app.use('/', seat)
 
 const server = app.listen(3001, () =>
 	console.log(`
