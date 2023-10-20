@@ -1,8 +1,10 @@
 const express = require('express')
-const { getSeats, createSeat, getSeatsByFloor } = require('../controllers/seat')
+const { getSeats, createSeat, getSeatsByFloor, updateSeat, deleteSeat } = require('../controllers/seat')
 const router = express.Router()
+const { protect, authorize } = require('../middleware/auth')
 
-router.route('/').get(getSeats).post(createSeat)
+router.route('/').get(getSeats).post(protect, authorize('admin'), createSeat)
+router.route('/:id').put(protect, authorize('admin'), updateSeat).delete(protect, authorize('admin'), deleteSeat)
 router.route('/floor/:floor').get(getSeatsByFloor)
 
 module.exports = router
