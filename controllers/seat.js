@@ -21,7 +21,7 @@ exports.getSeatsByFloor = async (req, res, next) => {
 	try {
 		const seats = await prisma.seat.findMany({
 			where: {
-				floor: Number(floor)
+				floor
 			}
 		})
 		res.status(200).json(seats)
@@ -34,14 +34,14 @@ exports.getSeatsByFloor = async (req, res, next) => {
 //@route    POST /
 //@access   Admin
 exports.createSeat = async (req, res, next) => {
-	const { isOpen, floor, posX, posY } = req.body
+	const { isOpen, floor, top, left } = req.body
 	try {
 		const seat = await prisma.seat.create({
 			data: {
 				isOpen,
 				floor,
-				posX,
-				posY
+				top,
+				left
 			}
 		})
 		res.status(201).json(seat)

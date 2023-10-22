@@ -1,5 +1,6 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
+// npx prisma migrate dev --name init
 
 generator client {
   provider = "prisma-client-js"
@@ -13,7 +14,7 @@ datasource db {
 model Seat {
   id        Int      @id @default(autoincrement())
   isOpen    Boolean  @default(true)
-  floor     Int
-  posX      Int
-  posY      Int
+  floor     String   @db.VarChar(2)
+  top       Int
+  left      Int
 }
