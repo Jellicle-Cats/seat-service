@@ -13,6 +13,22 @@ exports.getSeats = async (req, res, next) => {
 	}
 }
 
+//@desc     GET seat
+//@route    GET /:id
+//@access   Public
+exports.getSeat = async (req, res, next) => {
+	try {
+		const seats = await prisma.seat.findFirst({
+			where: {
+				id: Number(req.params.id)
+			}
+		})
+		res.status(200).json(seats)
+	} catch (err) {
+		res.status(400).json({ message: err })
+	}
+}
+
 //@desc     GET seats by floor
 //@route    GET /floor/:floor
 //@access   Public
