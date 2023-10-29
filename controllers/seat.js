@@ -56,8 +56,8 @@ exports.createSeat = async (req, res, next) => {
 			data: {
 				isOpen,
 				floor,
-				top,
-				left
+				top: Number(top),
+				left: Number(left)
 			}
 		})
 		res.status(201).json(seat)
